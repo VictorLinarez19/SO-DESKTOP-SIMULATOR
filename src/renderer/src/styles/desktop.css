@@ -1,0 +1,1057 @@
+.desktop {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wallpaper {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1100px 700px at 12% 18%, #ff6a3d 0%, transparent 58%),
+    radial-gradient(900px 750px at 88% 22%, #7b3fe4 0%, transparent 60%),
+    radial-gradient(1100px 800px at 55% 105%, #0a84ff 0%, transparent 60%),
+    radial-gradient(700px 500px at 40% 45%, #c2185b55 0%, transparent 70%), #120d2a;
+}
+
+/* ── Barra de menú ── */
+.menubar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border-width: 0 0 1px;
+  border-radius: 0;
+  box-shadow: none;
+  background: rgba(30, 24, 48, 0.42);
+}
+
+.menu-group {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.menu-root {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.menu-title {
+  height: 22px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.menu-title.bold {
+  font-weight: 700;
+}
+
+.menu-title.open,
+.menu-title:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  min-width: 240px;
+  padding: 5px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px 0 4px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  font-size: 13px;
+}
+
+.menu-item:hover:not(:disabled) {
+  background: var(--accent);
+}
+
+.menu-item:disabled {
+  color: var(--text-faint);
+}
+
+.menu-check {
+  width: 16px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.menu-label {
+  flex: 1;
+}
+
+.menu-shortcut {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.menu-sep {
+  height: 1px;
+  margin: 4px 8px;
+  background: var(--separator);
+}
+
+.menubar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menubar-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 22px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.menubar-status:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot.on {
+  background: #30d158;
+  box-shadow: 0 0 6px #30d158;
+}
+
+.status-dot.off {
+  background: #ff9f0a;
+}
+
+.menubar-clock {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+
+.menubar-clock::first-letter,
+.login-date::first-letter {
+  text-transform: uppercase;
+}
+
+/* ── Dock ── */
+.dock-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.dock {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 70px;
+  padding: 8px 10px;
+  border-radius: 24px;
+}
+
+.dock-icon {
+  position: relative;
+  border: 0;
+  padding: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.app-icon-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+}
+
+.dock-dot {
+  position: absolute;
+  bottom: -6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  padding: 4px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.12s,
+    transform 0.12s;
+  pointer-events: none;
+}
+
+.dock-icon:hover .dock-tooltip {
+  opacity: 1;
+  transform: none;
+}
+
+.dock-sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 4px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Notificaciones ── */
+.notifications {
+  position: absolute;
+  top: 36px;
+  right: 12px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100001;
+  pointer-events: none;
+}
+
+.notice {
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.notice.critical {
+  box-shadow:
+    0 0 0 1px rgba(255, 69, 58, 0.6),
+    0 16px 50px rgba(0, 0, 0, 0.45);
+}
+
+.notice-icon {
+  font-size: 22px;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.notice-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notice-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.notice-body {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.notice-close {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(60, 60, 66, 0.95);
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.notice:hover .notice-close {
+  opacity: 1;
+}
+
+/* ── Fondos de pantalla ── */
+.desktop[data-wallpaper='oceano'] .wallpaper {
+  background:
+    radial-gradient(1100px 700px at 20% 15%, #1fb6c9 0%, transparent 60%),
+    radial-gradient(900px 750px at 85% 30%, #2a4bd7 0%, transparent 60%),
+    radial-gradient(1000px 800px at 50% 105%, #0b1f6b 0%, transparent 60%), #06122e;
+}
+
+.desktop[data-wallpaper='atardecer'] .wallpaper {
+  background:
+    radial-gradient(1100px 700px at 80% 20%, #ffb347 0%, transparent 60%),
+    radial-gradient(900px 750px at 15% 40%, #ff4f81 0%, transparent 60%),
+    radial-gradient(1000px 800px at 50% 105%, #5b2a86 0%, transparent 60%), #2a1038;
+}
+
+.desktop[data-wallpaper='grafito'] .wallpaper {
+  background:
+    radial-gradient(1000px 700px at 30% 20%, #4a4a52 0%, transparent 60%),
+    radial-gradient(900px 700px at 80% 80%, #2b2b33 0%, transparent 60%), #151518;
+}
+
+/* ── Spotlight ── */
+.overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 100002;
+  display: flex;
+  justify-content: center;
+  padding-top: 14vh;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.spotlight {
+  width: 640px;
+  max-width: calc(100vw - 32px);
+  align-self: flex-start;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.spotlight-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: var(--text-muted);
+}
+
+.spotlight-input input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: none;
+  font-size: 20px;
+  color: var(--text);
+  user-select: text;
+}
+
+.spotlight-results {
+  margin: 0;
+  padding: 0 8px 8px;
+  list-style: none;
+  max-height: 52vh;
+  overflow: auto;
+  border-top: 1px solid var(--separator);
+}
+
+.sp-group {
+  padding: 10px 10px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-faint);
+}
+
+.sp-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  text-align: left;
+}
+
+.sp-item.active {
+  background: var(--accent);
+}
+
+.sp-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+}
+
+.sp-act {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.sp-title {
+  font-weight: 600;
+}
+
+.sp-sub {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 55%;
+}
+
+.sp-item.active .sp-sub {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sp-empty {
+  padding: 18px;
+  text-align: center;
+  color: var(--text-muted);
+  border-top: 1px solid var(--separator);
+}
+
+/* ── Centro de control ── */
+.menubar-icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 22px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+}
+
+.menubar-icon:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.cc-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 100001;
+}
+
+.control-center {
+  position: absolute;
+  top: 34px;
+  right: 10px;
+  width: 410px;
+  z-index: 100002;
+  padding: 12px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cc-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.control-center .cc-tile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 14px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.control-center .cc-tile.on {
+  background: rgba(10, 132, 255, 0.35);
+}
+
+.cc-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.cc-tile.on .cc-dot {
+  background: #30d158;
+  box-shadow: 0 0 6px #30d158;
+}
+
+.cc-section {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cc-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cc-section input[type='range'] {
+  accent-color: var(--accent);
+}
+
+.cc-scale {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.cc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.cc-row select {
+  width: 230px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cc-row select option {
+  background: #2c2c2e;
+}
+
+.cc-wallpapers {
+  display: flex;
+  gap: 8px;
+}
+
+.control-center .cc-wp {
+  width: 56px;
+  height: 36px;
+  padding: 0;
+  border-radius: 8px;
+  border: 2px solid transparent;
+}
+
+.control-center .cc-wp.active {
+  border-color: #fff;
+}
+
+.cc-wp.wp-aurora {
+  background: linear-gradient(135deg, #ff6a3d, #7b3fe4 55%, #0a84ff);
+}
+.cc-wp.wp-oceano {
+  background: linear-gradient(135deg, #1fb6c9, #2a4bd7 55%, #0b1f6b);
+}
+.cc-wp.wp-atardecer {
+  background: linear-gradient(135deg, #ffb347, #ff4f81 55%, #5b2a86);
+}
+.cc-wp.wp-grafito {
+  background: linear-gradient(135deg, #5a5a62, #2b2b33);
+}
+
+.cc-footer {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+.cc-footer button,
+.cc-scale button {
+  min-width: 0;
+  height: 30px;
+  padding: 0 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cc-scale button {
+  flex: 0 0 auto;
+  padding: 0 14px;
+}
+
+.cc-footer button:hover,
+.cc-scale button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Mission Control ── */
+.mission-control {
+  position: absolute;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(10, 8, 24, 0.55);
+  backdrop-filter: blur(24px) saturate(150%);
+}
+
+.mc-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  border-radius: 16px;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(40, 40, 48, 0.8);
+}
+
+.mc-card:hover {
+  box-shadow:
+    0 0 0 4px var(--accent),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.mc-icon {
+  width: 22%;
+  max-width: 160px;
+  aspect-ratio: 1;
+}
+
+.mc-name {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.mc-min {
+  font-size: 22px;
+  color: var(--text-muted);
+}
+
+.mc-hint,
+.mc-empty {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.mc-hint {
+  bottom: 104px;
+}
+
+.mc-empty {
+  top: 45%;
+  font-size: 20px;
+}
+
+/* ── Arranque y apagado ── */
+.power-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 100010;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: #000;
+}
+
+.power-logo {
+  width: 120px;
+  height: 120px;
+}
+
+.power-screen h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.boot-bar {
+  width: 220px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.boot-bar span {
+  display: block;
+  height: 100%;
+  background: #fff;
+  border-radius: 3px;
+}
+
+.boot-step {
+  height: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Inicio de sesión, bloqueo y reposo ── */
+.login-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 100009;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7vh 0 5vh;
+  overflow: hidden;
+}
+
+.login-wallpaper {
+  position: absolute;
+  inset: -40px;
+  background:
+    radial-gradient(1100px 700px at 12% 18%, #ff6a3d 0%, transparent 58%),
+    radial-gradient(900px 750px at 88% 22%, #7b3fe4 0%, transparent 60%),
+    radial-gradient(1100px 800px at 55% 105%, #0a84ff 0%, transparent 60%), #120d2a;
+  filter: blur(22px) brightness(0.8);
+}
+
+.login-screen[data-wallpaper='oceano'] .login-wallpaper {
+  background:
+    radial-gradient(1100px 700px at 20% 15%, #1fb6c9 0%, transparent 60%),
+    radial-gradient(900px 750px at 85% 30%, #2a4bd7 0%, transparent 60%), #06122e;
+}
+.login-screen[data-wallpaper='atardecer'] .login-wallpaper {
+  background:
+    radial-gradient(1100px 700px at 80% 20%, #ffb347 0%, transparent 60%),
+    radial-gradient(900px 750px at 15% 40%, #ff4f81 0%, transparent 60%), #2a1038;
+}
+.login-screen[data-wallpaper='grafito'] .login-wallpaper {
+  background: radial-gradient(1000px 700px at 30% 20%, #4a4a52 0%, transparent 60%), #151518;
+}
+
+.login-screen > * {
+  position: relative;
+}
+
+.login-clock {
+  text-align: center;
+}
+
+.login-time {
+  font-size: 84px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.login-date {
+  margin-top: 6px;
+  display: block;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.login-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.login-users {
+  display: flex;
+  gap: 36px;
+}
+
+.login-screen .login-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 16px;
+  background: none;
+  font-size: 16px;
+}
+
+.login-screen .login-user:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-name {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.login-field {
+  display: flex;
+  align-items: center;
+  width: 260px;
+  height: 34px;
+  padding: 0 4px 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+}
+
+.login-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  font-size: 14px;
+  color: #fff;
+  user-select: text;
+}
+
+.login-field input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.login-field button {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: none;
+  color: #fff;
+}
+
+.login-hint {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+}
+
+.login-error {
+  color: #ff8a82;
+  font-weight: 600;
+}
+
+.login-screen .login-link {
+  border: 0;
+  background: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.login-power {
+  display: flex;
+  gap: 28px;
+}
+
+.login-power button {
+  border: 0;
+  background: none;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.login-power button:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.sleep-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 100011;
+  background: #000;
+  display: grid;
+  place-items: end center;
+  padding-bottom: 40px;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 12px;
+}
+
+/* ── Centro de control: red y energía ── */
+.control-center {
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+}
+
+.cc-net-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-center .cc-net-toggle {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 17px;
+}
+
+.control-center .cc-net-toggle.on {
+  background: var(--accent);
+}
+
+.control-center .cc-net-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+  flex: 1;
+}
+
+.cc-net-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 0 6px 44px;
+  max-height: 190px;
+  overflow: auto;
+}
+
+.control-center .cc-net-item {
+  display: grid;
+  grid-template-columns: 16px 1fr auto auto;
+  gap: 6px;
+  align-items: center;
+  width: 100%;
+  height: 28px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  font-size: 12px;
+}
+
+.control-center .cc-net-item:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cc-net-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wifi-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.wifi-bars i {
+  width: 3px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.wifi-bars i.on {
+  background: #fff;
+}
+
+.cc-net-pass {
+  display: flex;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.cc-net-pass input {
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  user-select: text;
+}
+
+.cc-net-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.cc-net-actions button,
+.cc-net-pass button {
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+}
+
+.cc-net-msg {
+  font-size: 12px;
+  color: #30d158;
+}
+
+.cc-net-msg.bad {
+  color: #ff8a82;
+}
+
+.cc-power button.danger {
+  color: #ff8a82;
+}
+
+/* Sin sesión (inicio, bloqueo, reposo) no se ve nada del escritorio. */
+.desktop[data-power='login'] :is(.menubar, .dock-wrap, .window-layer, .notifications),
+.desktop[data-power='locked'] :is(.menubar, .dock-wrap, .window-layer, .notifications),
+.desktop[data-power='sleeping'] :is(.menubar, .dock-wrap, .window-layer, .notifications),
+.desktop[data-power='booting'] :is(.menubar, .dock-wrap, .window-layer, .notifications) {
+  visibility: hidden;
+}
+
+.cc-power {
+  margin-bottom: 2px;
+}
