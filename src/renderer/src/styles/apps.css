@@ -419,7 +419,7 @@
 }
 
 .edge.hot path {
-  stroke: #0a84ff;
+  stroke: #e8304f;
   stroke-width: 3;
 }
 
@@ -1960,7 +1960,7 @@ code {
 }
 
 .usage-track .seg.used {
-  background: #0a84ff;
+  background: #e8304f;
 }
 
 .disk-columns {
@@ -2669,7 +2669,7 @@ code {
 
 .demo-card.active {
   border-color: var(--accent);
-  background: rgba(10, 132, 255, 0.1);
+  background: rgba(232, 48, 79, 0.1);
 }
 
 .demo-card h3 {

@@ -1,4 +1,4 @@
-# guiñanOS
+# LinarezOS
 
 Simulador de sistema operativo de escritorio para la materia **Sistemas de Operación**. Un kernel
 simulado (procesos, memoria, disco, sincronización, interbloqueo) con interfaz estilo macOS y
@@ -10,7 +10,7 @@ Bluetooth, impresión).
 ```bash
 npm install
 node node_modules/electron/install.js   # solo si Electron no se descargó solo
-npm run dev                             # abre guiñanOS
+npm run dev                             # abre LinarezOS
 ```
 
 Otras órdenes:
@@ -33,7 +33,7 @@ cuenta. Cuentas iniciales (se guardan en `disk.img`, con la contraseña protegid
 
 | Cuenta | Contraseña | Tipo |
 |---|---|---|
-| Juan | `guinan` | Administrador |
+| Victor | `victor` | Administrador |
 | Invitado | _(ninguna)_ | Estándar |
 
 Un administrador crea y elimina cuentas en **Usuarios y contraseñas**. Una cuenta estándar solo puede
@@ -52,7 +52,7 @@ modificar su carpeta personal (`/Usuarios/<cuenta>`), tanto en el Finder como en
 | Memoria: compactación y recubrimiento | **Memoria** (mapa, compactar, overlays del Compilador) |
 | Fragmentación mostrada | Alerta naranja y métricas en **Memoria** |
 | Sincronización de procesos | **Sincronización** (semáforos, mutex, búfer, condición de carrera) |
-| Disco duro | **Utilidad de Discos** y **Finder** (`disk.img` real, guiñanFS, 6 algoritmos del brazo) |
+| Disco duro | **Utilidad de Discos** y **Finder** (`disk.img` real, LinarezFS, 6 algoritmos del brazo) |
 | E/S y hardware real | **Información del sistema** y el **Centro de control** |
 
 La app **Demostración** reinicia el kernel y lo configura con un clic para provocar cada fenómeno
@@ -64,11 +64,11 @@ La app **Demostración** reinicia el kernel y lo configura con un clic para prov
 |---|---|
 | Teclado y ratón | Cada tecla o clic es una interrupción (IRQ) para el proceso de la ventana activa |
 | Cámara | Solo enciende si el proceso Cámara posee el recurso `camara` |
-| Memoria USB | Al conectarla hay una IRQ y el proceso Respaldo USB copia un archivo real a `guiñanOS-respaldos/` |
+| Memoria USB | Al conectarla hay una IRQ y el proceso Respaldo USB copia un archivo real a `LinarezOS-respaldos/` |
 | Batería y cargador | IRQ al cambiar; sin cargador y bajo 20 % el kernel ralentiza su reloj |
 | Wi-Fi y Bluetooth | **Centro de control**: listar, conectar, desconectar y activar (NetworkManager y BlueZ reales) |
-| Impresión | El Spooler genera un PDF real en `~/.config/guiñanOS/Impresiones` |
-| Disco | `~/.config/guiñanOS/disk.img` (32 MB) con un sistema de archivos propio |
+| Impresión | El Spooler genera un PDF real en `~/.config/LinarezOS/Impresiones` |
+| Disco | `~/.config/LinarezOS/disk.img` (32 MB) con un sistema de archivos propio |
 | Bocinas | Suenan solo mientras el dispositivo de audio atiende al proceso Música |
 
 El Wi-Fi y el Bluetooth cambian el estado real del equipo: solo actúan cuando tú los pulsas.
@@ -99,7 +99,7 @@ Comandos reales que consultan y controlan el kernel. Escribe `help` para la list
 ## Exportar evidencia
 
 La **Consola del kernel** exporta la bitácora completa en CSV o JSON y un reporte en Markdown con las
-métricas y el estado final, en `~/.config/guiñanOS/Exportaciones`.
+métricas y el estado final, en `~/.config/LinarezOS/Exportaciones`.
 
 ## Arquitectura
 

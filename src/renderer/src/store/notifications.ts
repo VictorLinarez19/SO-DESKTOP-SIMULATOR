@@ -50,7 +50,7 @@ useKernel.subscribe((state) => {
     notices: [
       ...fresh.map((e) => ({
         id: e.id,
-        title: TITLES[e.kind] ?? 'guiñanOS',
+        title: TITLES[e.kind] ?? 'LinarezOS',
         body: e.message,
         level: e.level!,
         kind: e.kind,

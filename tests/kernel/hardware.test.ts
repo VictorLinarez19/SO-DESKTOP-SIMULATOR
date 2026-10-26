@@ -6,7 +6,7 @@ import { kernelWith, prog, run } from './helpers'
 const usb: HwStorage = {
   id: 'sdb1',
   label: 'KINGSTON',
-  mount: '/media/juan/KINGSTON',
+  mount: '/media/victor/KINGSTON',
   sizeBytes: 16e9,
   model: 'DataTraveler',
   fstype: 'vfat'
@@ -54,7 +54,7 @@ describe('Teclado y ratón reales', () => {
 })
 
 describe('Memoria USB real', () => {
-  const respaldo = prog('respaldo', 'FREAD /Usuarios/juan/Documentos/informe.txt\nIO usb 3\nCPU 1')
+  const respaldo = prog('respaldo', 'FREAD /Usuarios/victor/Documentos/informe.txt\nIO usb 3\nCPU 1')
 
   it('sin memoria USB la transferencia no avanza; al conectarla termina y se copia el archivo', () => {
     const k = kernelWith([respaldo], { realDevices: true })
@@ -101,7 +101,7 @@ describe('Memoria USB real', () => {
 describe('Impresora, energía y Editor', () => {
   it('al terminar la E/S de impresora se manda a imprimir el documento leído', () => {
     const k = kernelWith([
-      prog('spooler', 'FREAD /Usuarios/juan/Documentos/tarea_SO.txt\nIO impresora 2')
+      prog('spooler', 'FREAD /Usuarios/victor/Documentos/tarea_SO.txt\nIO impresora 2')
     ])
     run(k, 30)
     const [effect] = k.drainEffects()
@@ -127,14 +127,14 @@ describe('Impresora, energía y Editor', () => {
   })
 
   it('el proceso Editor guarda en disco el texto que el usuario escribió', () => {
-    const k = kernelWith([prog('editor', 'FWRITE /Usuarios/juan/Documentos/notas.txt 8')])
+    const k = kernelWith([prog('editor', 'FWRITE /Usuarios/victor/Documentos/notas.txt 8')])
     k.command({
       type: 'docUpdate',
-      path: '/Usuarios/juan/Documentos/notas.txt',
+      path: '/Usuarios/victor/Documentos/notas.txt',
       text: 'Escrito con el teclado real'
     })
     run(k, 20)
-    const info = k.query({ type: 'fileInfo', path: '/Usuarios/juan/Documentos/notas.txt' }) as {
+    const info = k.query({ type: 'fileInfo', path: '/Usuarios/victor/Documentos/notas.txt' }) as {
       preview: string
     }
     expect(info.preview).toBe('Escrito con el teclado real')
@@ -145,10 +145,10 @@ describe('Impresora, energía y Editor', () => {
     const png = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 1, 2, 3]
     k.command({
       type: 'fsWriteBinary',
-      path: '/Usuarios/juan/Imágenes/foto.png',
+      path: '/Usuarios/victor/Imágenes/foto.png',
       base64: btoa(String.fromCharCode(...png))
     })
-    const info = k.query({ type: 'fileInfo', path: '/Usuarios/juan/Imágenes/foto.png' }) as {
+    const info = k.query({ type: 'fileInfo', path: '/Usuarios/victor/Imágenes/foto.png' }) as {
       image: string
     }
     expect(info.image).toMatch(/^data:image\/png;base64,iVBORw0KGgo/)

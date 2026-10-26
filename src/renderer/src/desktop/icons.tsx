@@ -232,7 +232,7 @@ function CameraIcon() {
       <rect x="20" y="34" width="60" height="38" rx="8" fill="#e5e5ea" />
       <rect x="40" y="27" width="20" height="10" rx="3" fill="#e5e5ea" />
       <circle cx="50" cy="53" r="13" fill="#1c1c1e" />
-      <circle cx="50" cy="53" r="8" fill="#0a84ff" />
+      <circle cx="50" cy="53" r="8" fill="#e8304f" />
       <circle cx="70" cy="42" r="3" fill="#ff453a" />
     </Squircle>
   )
@@ -312,18 +312,19 @@ function ConsoleIcon() {
   )
 }
 
-/** Logo de guiñanOS: una "O" coronada por la tilde de la ñ. */
+/** Logo de LinarezOS: una "L" dentro de una "O". */
 export function LogoIcon() {
   return (
-    <Squircle from="#ff7a45" to="#7b3fe4">
+    <Squircle from="#ff5470" to="#9b1030">
+      <circle cx="50" cy="50" r="27" fill="none" stroke="#fff" strokeWidth="7" />
       <path
-        d="M30 30 q7 -9 14 -2 t14 -2 t12 -3"
+        d="M43 36 V62 H60"
         fill="none"
         stroke="#fff"
         strokeWidth="7"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <circle cx="50" cy="61" r="19" fill="none" stroke="#fff" strokeWidth="8" />
     </Squircle>
   )
 }

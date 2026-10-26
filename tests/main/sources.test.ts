@@ -59,7 +59,7 @@ describe('HAL: detección de memorias USB (lsblk)', () => {
               name: 'sdb1',
               size: 16e9,
               type: 'part',
-              mountpoints: ['/media/juan/KINGSTON'],
+              mountpoints: ['/media/victor/KINGSTON'],
               label: 'KINGSTON',
               tran: null,
               rm: true,
@@ -75,7 +75,7 @@ describe('HAL: detección de memorias USB (lsblk)', () => {
       {
         id: 'sdb1',
         label: 'KINGSTON',
-        mount: '/media/juan/KINGSTON',
+        mount: '/media/victor/KINGSTON',
         sizeBytes: 16e9,
         model: 'DataTraveler 3.0',
         fstype: 'vfat'

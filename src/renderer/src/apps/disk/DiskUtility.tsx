@@ -54,7 +54,7 @@ export function DiskUtility(): React.JSX.Element {
           <div className="disk-title">
             <h2>Macintosh HD</h2>
             <div className="muted small">
-              guiñanFS · asignación indexada · {fmtSize(total)} · bloques de {disk.blockSize / 1024}{' '}
+              LinarezFS · asignación indexada · {fmtSize(total)} · bloques de {disk.blockSize / 1024}{' '}
               KB · {disk.cylinders} cilindros
             </div>
             <div className="mono small disk-path" title="Archivo real que contiene el disco">

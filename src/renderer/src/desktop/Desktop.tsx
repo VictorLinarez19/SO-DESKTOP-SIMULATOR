@@ -44,7 +44,7 @@ export function Desktop(): React.JSX.Element {
   }, [power])
 
   useEffect(() => {
-    // El teclado y el ratón reales generan interrupciones en el kernel de guiñanOS.
+    // El teclado y el ratón reales generan interrupciones en el kernel de LinarezOS.
     const send = (cmd: Parameters<typeof window.os.command>[0]): void => void window.os.command(cmd)
     let lastMove = 0
     const onPointerDown = (): void =>

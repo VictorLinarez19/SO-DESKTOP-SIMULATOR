@@ -22,7 +22,7 @@ export function snapshotToReport(s: KernelSnapshot, events: KernelEvent[]): stri
   const st = s.stats
   const count = (kind: string): number => events.filter((e) => e.kind === kind).length
   const lines: string[] = [
-    '# Reporte de guiñanOS',
+    '# Reporte de LinarezOS',
     '',
     `Generado el ${new Date().toLocaleString('es-MX')} · tick ${s.tick} · planificador ${s.config.policy}`,
     '',

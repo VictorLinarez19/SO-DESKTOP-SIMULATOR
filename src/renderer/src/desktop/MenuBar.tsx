@@ -60,7 +60,7 @@ export function MenuBar(): React.JSX.Element {
       id: 'system',
       label: <LogoGlyph />,
       items: [
-        { label: 'Acerca de guiñanOS', action: () => wm.open('about') },
+        { label: 'Acerca de LinarezOS', action: () => wm.open('about') },
         'separator',
         {
           label: `Sesión de ${user?.fullName ?? '—'}${user?.admin ? ' (administrador)' : ''}`,
@@ -113,7 +113,7 @@ export function MenuBar(): React.JSX.Element {
             'separator',
             { label: `Salir de ${app.name}`, shortcut: 'Ctrl+Q', action: () => wm.closeApp(app.id) }
           ]
-        : [{ label: 'Acerca de guiñanOS', action: () => wm.open('about') }]
+        : [{ label: 'Acerca de LinarezOS', action: () => wm.open('about') }]
     },
     {
       id: 'file',

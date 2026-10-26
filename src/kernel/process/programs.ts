@@ -54,7 +54,7 @@ export const BOOT_PROGRAMS: ProgramSpec[] = [
     source: `
       # Lista la carpeta Documentos (lee el directorio del disco) y espera al ratón
       ciclo: CPU 2
-             FREAD /Usuarios/juan/Documentos
+             FREAD /Usuarios/victor/Documentos
              CPU 1
              IO raton 12
              LOOP ciclo`
@@ -86,7 +86,7 @@ export const BOOT_PROGRAMS: ProgramSpec[] = [
       edita: CPU 1
              IO teclado 20
              CPU 1
-             FWRITE /Usuarios/juan/Documentos/notas.txt 8
+             FWRITE /Usuarios/victor/Documentos/notas.txt 8
              LOOP edita`
   },
   {
@@ -188,7 +188,7 @@ export const BOOT_PROGRAMS: ProgramSpec[] = [
     arrival: 12,
     source: `
       # Lee el documento a imprimir, toma la impresora y después la memoria USB
-      trabajo: FREAD /Usuarios/juan/Documentos/tarea_SO.txt
+      trabajo: FREAD /Usuarios/victor/Documentos/tarea_SO.txt
                CPU 2
                REQ impresora
                CPU 2
@@ -208,7 +208,7 @@ export const BOOT_PROGRAMS: ProgramSpec[] = [
     source: `
       # Lee el informe del disco, toma la memoria USB y después la impresora para el
       # comprobante: orden inverso al del Spooler → posible interbloqueo
-      copia: FREAD /Usuarios/juan/Documentos/informe.txt
+      copia: FREAD /Usuarios/victor/Documentos/informe.txt
              REQ usb
              CPU 2
              REQ impresora
@@ -229,14 +229,14 @@ export const BOOT_PROGRAMS: ProgramSpec[] = [
     arrival: 16,
     source: `
       # Compila 3 veces main.c; cada fase es un módulo de recubrimiento distinto
-      archivo: FREAD /Usuarios/juan/Proyectos/main.c
+      archivo: FREAD /Usuarios/victor/Proyectos/main.c
                OVERLAY lexico
                CPU 4
                OVERLAY sintactico
                CPU 6
                OVERLAY codegen
                CPU 4
-               FWRITE /Usuarios/juan/Proyectos/a.out 24
+               FWRITE /Usuarios/victor/Proyectos/a.out 24
                LOOP archivo 3
                EXIT`
   },

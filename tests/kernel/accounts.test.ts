@@ -32,13 +32,13 @@ describe('Cuentas de usuario', () => {
   it('serializa y vuelve a leer las cuentas, sin guardar texto claro', async () => {
     const accounts = await defaultAccounts()
     const text = serializeAccounts(accounts)
-    expect(text).not.toContain('guinan|')
+    expect(text).not.toContain('|victor|')
     expect(parseAccounts(text)).toEqual(accounts)
   })
 
   it('valida nombres y contraseñas', () => {
-    expect(validName('juan')).toBeNull()
-    expect(validName('Juan')).not.toBeNull()
+    expect(validName('victor')).toBeNull()
+    expect(validName('Victor')).not.toBeNull()
     expect(validName('a')).not.toBeNull()
     expect(validName('../etc')).not.toBeNull()
     expect(validPassword('abc')).not.toBeNull()
@@ -51,7 +51,7 @@ describe('Cuentas de usuario', () => {
     expect(canWrite(user, '/Usuarios/ana')).toBe(true)
     expect(canWrite(user, '/Usuarios/anabel/x')).toBe(false)
     expect(canWrite(user, '/Sistema/kernel.img')).toBe(false)
-    expect(canWrite({ name: 'juan', admin: true }, '/Sistema/kernel.img')).toBe(true)
+    expect(canWrite({ name: 'victor', admin: true }, '/Sistema/kernel.img')).toBe(true)
     expect(canWrite(null, '/')).toBe(false)
   })
 

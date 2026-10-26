@@ -14,7 +14,7 @@ import {
 } from './resources/resourceManager'
 import { detectDeadlock, findCycle, type AllocationState, type Vec } from './resources/deadlock'
 import { MemoryBlockDevice, type BlockDevice } from './disk/blockDevice'
-import { basename, FsError, GuinanFS } from './disk/fs'
+import { basename, FsError, LinarezFS } from './disk/fs'
 import { seedFileSystem, textContent } from './disk/seed'
 import { CYLINDERS, DISK_KB_PER_TICK, DiskArm } from './disk/diskScheduler'
 import { createPcb, type PCB } from './process/pcb'
@@ -90,7 +90,7 @@ export const DEFAULT_MEMORY: MemoryConfig = {
 /** Por debajo de esta carga (sin cargador) el kernel entra en modo de bajo consumo. */
 export const LOW_BATTERY = 20
 /** Carpeta de la memoria USB real donde se copian los respaldos. */
-export const USB_BACKUP_DIR = 'guiñanOS-respaldos'
+export const USB_BACKUP_DIR = 'LinarezOS-respaldos'
 /** FSCAN analiza como máximo esta cantidad de cada archivo (la cabecera). */
 export const SCAN_KB = 64
 /** KB que el kernel puede copiar por tick al compactar. */
@@ -176,7 +176,7 @@ export class Kernel {
   private deadlock: ResourcesInfo['deadlock'] = null
   private dlStats = { deadlocks: 0, recoveries: 0, unsafeDenials: 0, preventiveReleases: 0 }
   resources!: ResourceManager
-  fs!: GuinanFS
+  fs!: LinarezFS
   private readonly disk: BlockDevice
   private diskPolicy: DiskPolicy
   private io = { reads: 0, writes: 0, kbRead: 0, kbWritten: 0 }
@@ -263,7 +263,7 @@ export class Kernel {
     this.pending = [...this.programs].sort((a, b) => a.arrival - b.arrival)
     this.emit(
       'scheduler',
-      `guiñanOS iniciado · planificador: ${POLICY_LABEL[policy]} · memoria: ` +
+      `LinarezOS iniciado · planificador: ${POLICY_LABEL[policy]} · memoria: ` +
         `${this.memory.totalKb} KB (${this.memory.osKb} KB del SO), ${FIT_LABEL[fit].toLowerCase()}`
     )
     this.spawnArrivals()
@@ -1882,7 +1882,7 @@ export class Kernel {
     const src = pcb.lastRead && this.fs.exists(pcb.lastRead) ? pcb.lastRead : null
     const content = src
       ? new TextDecoder().decode(this.fs.readFile(src).bytes)
-      : `Respaldo de guiñanOS generado por ${pcb.name} (PID ${pcb.pid}) en el tick ${this.now}.\n`
+      : `Respaldo de LinarezOS generado por ${pcb.name} (PID ${pcb.pid}) en el tick ${this.now}.\n`
     const fileName = `respaldo_${String(++this.backupSeq).padStart(3, '0')}_${src ? basename(src) : 'sistema.txt'}`
     this.effects.push({
       type: 'usbWrite',
@@ -1903,7 +1903,7 @@ export class Kernel {
     const src = pcb.lastRead && this.fs.exists(pcb.lastRead) ? pcb.lastRead : null
     const content = src
       ? new TextDecoder().decode(this.fs.readFile(src).bytes)
-      : `Página de prueba de guiñanOS (PID ${pcb.pid}, tick ${this.now}).`
+      : `Página de prueba de LinarezOS (PID ${pcb.pid}, tick ${this.now}).`
     const jobId = ++this.printSeq
     this.effects.push({
       type: 'print',
@@ -1922,17 +1922,17 @@ export class Kernel {
     return Math.floor((this.opts.now ?? Date.now)() / 1000)
   }
 
-  /** Monta guiñanFS; si el disco no tiene formato, lo formatea con el contenido inicial. */
+  /** Monta LinarezFS; si el disco no tiene formato, lo formatea con el contenido inicial. */
   private mountDisk(): void {
-    const mounted = GuinanFS.mount(this.disk)
+    const mounted = LinarezFS.mount(this.disk)
     if (mounted) {
       this.fs = mounted
       this.emit('file', `Disco montado (montaje n.º ${mounted.mountCount}) · ${this.diskLabel()}`)
       return
     }
-    this.fs = GuinanFS.format(this.disk, this.secs())
+    this.fs = LinarezFS.format(this.disk, this.secs())
     seedFileSystem(this.fs, this.secs())
-    this.emit('file', `Disco formateado con guiñanFS (asignación indexada) · ${this.diskLabel()}`)
+    this.emit('file', `Disco formateado con LinarezFS (asignación indexada) · ${this.diskLabel()}`)
   }
 
   private diskLabel(): string {

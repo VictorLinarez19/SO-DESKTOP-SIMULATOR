@@ -103,7 +103,7 @@ export function Finder(): React.JSX.Element {
               send({
                 type: 'fsWriteText',
                 path,
-                text: `Documento creado en guiñanOS el ${new Date().toLocaleString('es-MX')}.\n`
+                text: `Documento creado en LinarezOS el ${new Date().toLocaleString('es-MX')}.\n`
               })
               selectFile(path)
             }}

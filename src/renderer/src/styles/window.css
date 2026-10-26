@@ -230,11 +230,11 @@
 
 .window .search:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(232, 48, 79, 0.3);
 }
 
 .window select option {
-  background: #2c2c2e;
+  background: #3a1c23;
 }
 
 .window button:not(.tl):not(.icon-btn):not(.segmented button):not(.stepper button) {

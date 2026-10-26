@@ -5,7 +5,7 @@ import { useHardware } from '../../store/hardware'
 import { PidBadge } from '../../components/Chips'
 import { fmtSize } from '../../lib/files'
 
-/** Información del sistema: el hardware real de la máquina y los controladores de guiñanOS. */
+/** Información del sistema: el hardware real de la máquina y los controladores de LinarezOS. */
 export function DevicesApp(): React.JSX.Element {
   const hw = useHardware((s) => s.hw)
   const snapshot = useKernel((s) => s.snapshot)
@@ -60,7 +60,7 @@ function HostCard({ hw, snapshot }: { hw: HwState; snapshot: KernelSnapshot }): 
             <b>{(h.cpu * 100).toFixed(0)} %</b>
           </div>
           <div>
-            <span>CPU simulada de guiñanOS</span>
+            <span>CPU simulada de LinarezOS</span>
             <b>{(snapshot.stats.cpuUtilization * 100).toFixed(0)} %</b>
           </div>
           <div>
@@ -82,13 +82,13 @@ function HostCard({ hw, snapshot }: { hw: HwState; snapshot: KernelSnapshot }): 
       <div className="section-title">Memoria RAM real</div>
       <div className="core">
         <span className="muted small">En uso</span>
-        <Bar value={memUsed / h.memTotal} color="#0a84ff" />
+        <Bar value={memUsed / h.memTotal} color="#e8304f" />
         <span className="small">
           {fmtSize(memUsed)} de {fmtSize(h.memTotal)}
         </span>
       </div>
       <p className="muted small note">
-        guiñanOS simula su propia RAM de {snapshot.memory.totalKb} KB y su disco de{' '}
+        LinarezOS simula su propia RAM de {snapshot.memory.totalKb} KB y su disco de{' '}
         {fmtSize(snapshot.disk.blockCount * snapshot.disk.blockSize)} (archivo real {hw.diskPath}).
       </p>
     </section>
@@ -198,7 +198,7 @@ function UsbCard({ hw, snapshot }: { hw: HwState; snapshot: KernelSnapshot }): R
         <p className="muted small">
           No hay ninguna memoria USB conectada. Conecta una: el kernel recibirá la interrupción y el
           proceso Respaldo USB copiará <code>informe.txt</code> a la carpeta{' '}
-          <code>guiñanOS-respaldos</code>.
+          <code>LinarezOS-respaldos</code>.
         </p>
       ) : (
         hw.storage.map((s) => (
@@ -245,7 +245,7 @@ function ControllersCard({ snapshot }: { snapshot: KernelSnapshot }): React.JSX.
   const k = snapshot.hardware
   return (
     <section className="side-card">
-      <div className="section-title">Controladores de dispositivo de guiñanOS</div>
+      <div className="section-title">Controladores de dispositivo de LinarezOS</div>
       <table className="proc-table">
         <thead>
           <tr>

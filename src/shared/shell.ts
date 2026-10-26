@@ -1,4 +1,4 @@
-// Intérprete de la Terminal de guiñanOS: traduce comandos a órdenes del kernel y
+// Intérprete de la Terminal de LinarezOS: traduce comandos a órdenes del kernel y
 // da formato a su estado. No usa el DOM, así que se prueba con un kernel real.
 import { canWrite } from './accounts'
 import type { KernelCommand, KernelQuery, KernelSnapshot, QueryResults } from './ipc'
@@ -102,8 +102,8 @@ export const COMMANDS: Record<string, string> = {
   logout: 'logout: cierra la sesión',
   lock: 'lock: bloquea la pantalla',
   sleep: 'sleep: suspende el equipo',
-  reboot: 'reboot: reinicia guiñanOS',
-  shutdown: 'shutdown: apaga guiñanOS',
+  reboot: 'reboot: reinicia LinarezOS',
+  shutdown: 'shutdown: apaga LinarezOS',
   lsdev: 'lsdev: controladores de dispositivo',
   uptime: 'uptime: tiempo de funcionamiento del kernel',
   pause: 'pause: pausa el reloj del kernel',
@@ -129,7 +129,7 @@ export async function runCommand(line: string, ctx: ShellContext): Promise<Shell
   switch (cmd) {
     case 'help':
       return ok(
-        'Comandos de la Terminal de guiñanOS:',
+        'Comandos de la Terminal de LinarezOS:',
         ...Object.entries(COMMANDS).map(([k, v]) => `  ${pad(k, 9)} ${v}`)
       )
     case 'clear':
@@ -146,7 +146,7 @@ export async function runCommand(line: string, ctx: ShellContext): Promise<Shell
       const st = s.stats
       const top = [...s.processes].sort((a, b) => b.cpuTime - a.cpuTime).slice(0, 8)
       return ok(
-        `guiñanOS t=${s.tick} · ${POLICY_LABEL[s.config.policy]} · CPU ${(st.cpuUtilization * 100).toFixed(1)} % · ` +
+        `LinarezOS t=${s.tick} · ${POLICY_LABEL[s.config.policy]} · CPU ${(st.cpuUtilization * 100).toFixed(1)} % · ` +
           `${st.contextSwitches} cambios de contexto`,
         `Procesos: ${s.processes.filter((p) => p.state !== 'TERMINATED').length} activos · en CPU: ${s.cpu.pid ?? 'ninguno'} · listos: [${s.readyQueue.join(' ')}]`,
         '',
@@ -332,7 +332,7 @@ export async function runCommand(line: string, ctx: ShellContext): Promise<Shell
       const u = s.disk.usage
       const kb = (b: number): number => (b * s.disk.blockSize) / 1024
       return ok(
-        `guiñanFS en ${s.disk.path ?? 'memoria'}`,
+        `LinarezFS en ${s.disk.path ?? 'memoria'}`,
         `datos ${kb(u.usedBlocks)} KB usados de ${kb(u.dataBlocks)} KB · libres ${kb(u.freeBlocks)} KB`,
         `swap ${kb(u.swapUsed)} KB de ${kb(u.swapBlocks)} KB · ${s.disk.io.reads} lecturas · ${s.disk.io.writes} escrituras`
       )

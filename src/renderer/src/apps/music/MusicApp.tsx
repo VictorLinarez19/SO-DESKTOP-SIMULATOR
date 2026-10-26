@@ -62,7 +62,7 @@ export function MusicApp(): React.JSX.Element {
       <div className="music-body">
         <div className={`album${playing && enabled ? ' spinning' : ''}`}>♪</div>
         <div className="track">
-          <b>Melodía de guiñanOS</b>
+          <b>Melodía de LinarezOS</b>
           <span className="muted small">
             Bocinas:{' '}
             {snapshot?.resources.allocation.some((a) => a.resource === 'audio' && a.pid === p?.pid)

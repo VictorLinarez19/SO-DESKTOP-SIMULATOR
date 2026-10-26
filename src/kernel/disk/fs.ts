@@ -1,7 +1,7 @@
 import type { BlockDevice } from './blockDevice'
 
 /**
- * guiñanFS: sistema de archivos con asignación indexada.
+ * LinarezFS: sistema de archivos con asignación indexada.
  *
  * Distribución del disco:
  *   bloque 0                superbloque
@@ -14,7 +14,7 @@ import type { BlockDevice } from './blockDevice'
  * Un directorio es un archivo cuyo contenido son entradas de 64 B (i-nodo + nombre).
  */
 
-const MAGIC = 'GUINANFS'
+const MAGIC = 'LINAR-FS'
 const VERSION = 1
 const INODE_SIZE = 128
 const INODE_COUNT = 256
@@ -67,7 +67,7 @@ const dec = new TextDecoder()
 
 export class FsError extends Error {}
 
-export class GuinanFS {
+export class LinarezFS {
   readonly blockSize: number
   readonly blockCount: number
   readonly dataStart = DATA_START
@@ -92,8 +92,8 @@ export class GuinanFS {
 
   // ───────────────────────── formato y montaje ─────────────────────────
 
-  static format(dev: BlockDevice, now = Math.floor(Date.now() / 1000)): GuinanFS {
-    const fs = new GuinanFS(dev)
+  static format(dev: BlockDevice, now = Math.floor(Date.now() / 1000)): LinarezFS {
+    const fs = new LinarezFS(dev)
     fs.formattedAt = now
     for (let b = 0; b < DATA_START; b++) fs.setUsed(b, true)
     for (let i = 0; i < INODE_COUNT; i++) {
@@ -126,12 +126,12 @@ export class GuinanFS {
   }
 
   /** Monta el sistema de archivos si el disco ya tiene uno; si no, devuelve null. */
-  static mount(dev: BlockDevice): GuinanFS | null {
+  static mount(dev: BlockDevice): LinarezFS | null {
     const sb = dev.read(0)
     if (dec.decode(sb.subarray(0, 8)) !== MAGIC) return null
     const v = new DataView(sb.buffer, sb.byteOffset)
     if (v.getUint32(8, true) !== VERSION || v.getUint32(12, true) !== dev.blockCount) return null
-    const fs = new GuinanFS(dev)
+    const fs = new LinarezFS(dev)
     fs.formattedAt = v.getUint32(16, true)
     fs.mountCount = v.getUint32(20, true) + 1
     fs.bitmap = dev.read(1).slice(0, fs.bitmap.length)

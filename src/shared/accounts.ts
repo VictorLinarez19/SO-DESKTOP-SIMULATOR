@@ -1,4 +1,4 @@
-// Cuentas de usuario de guiñanOS. Se guardan en /Sistema/cuentas.txt dentro de disk.img,
+// Cuentas de usuario de LinarezOS. Se guardan en /Sistema/cuentas.txt dentro de disk.img,
 // con la contraseña protegida por sal + SHA-256 (nunca en texto claro).
 
 export const ACCOUNTS_PATH = '/Sistema/cuentas.txt'
@@ -80,7 +80,7 @@ export async function verifyPassword(account: Account, password: string): Promis
 /** Cuentas con las que arranca un disco nuevo. */
 export async function defaultAccounts(): Promise<Account[]> {
   return [
-    await makeAccount('juan', 'Juan', 'guinan', true, 'El nombre del sistema'),
+    await makeAccount('victor', 'Victor', 'victor', true, 'Tu nombre de usuario'),
     await makeAccount('invitado', 'Invitado', '', false)
   ]
 }
@@ -89,7 +89,7 @@ export async function defaultAccounts(): Promise<Account[]> {
 export function serializeAccounts(accounts: Account[]): string {
   const clean = (s: string): string => s.replace(/[|\n]/g, ' ')
   return (
-    '# Cuentas de guiñanOS (contraseñas con sal + SHA-256)\n' +
+    '# Cuentas de LinarezOS (contraseñas con sal + SHA-256)\n' +
     accounts
       .map((a) =>
         [

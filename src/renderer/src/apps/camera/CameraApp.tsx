@@ -51,7 +51,7 @@ export function CameraApp(): React.JSX.Element {
     ctx.drawImage(video, 0, 0)
     const base64 = canvas.toDataURL('image/png').split(',')[1]
     const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15).replace('T', '_')
-    const path = `/Usuarios/juan/Imágenes/foto_${stamp}.png`
+    const path = `/Usuarios/victor/Imágenes/foto_${stamp}.png`
     send({ type: 'fsWriteBinary', path, base64 })
     setSaved(path)
     setFlash((n) => n + 1)
@@ -92,7 +92,7 @@ export function CameraApp(): React.JSX.Element {
         <span className="muted small">
           {saved
             ? `Foto guardada en disk.img: ${saved}`
-            : 'La foto se guarda como PNG en el disco de guiñanOS.'}
+            : 'La foto se guarda como PNG en el disco de LinarezOS.'}
         </span>
         <button
           className="shutter"

@@ -1,4 +1,4 @@
-import type { GuinanFS } from './fs'
+import type { LinarezFS } from './fs'
 
 const enc = new TextEncoder()
 
@@ -9,7 +9,7 @@ export function textContent(title: string, kb: number, body: string): Uint8Array
   let text = head
   let i = 1
   while (enc.encode(text).length < size) {
-    text += `Línea ${i++}: contenido almacenado en los bloques de datos de guiñanFS.\n`
+    text += `Línea ${i++}: contenido almacenado en los bloques de datos de LinarezFS.\n`
   }
   return enc.encode(text).slice(0, size)
 }
@@ -19,7 +19,7 @@ export function textContent(title: string, kb: number, body: string): Uint8Array
  * disco tenga huecos (como un sistema con uso) y los archivos queden repartidos en
  * distintos cilindros.
  */
-export function seedFileSystem(fs: GuinanFS, now: number): void {
+export function seedFileSystem(fs: LinarezFS, now: number): void {
   const big = (path: string, kb: number): void => void fs.writeFile(path, { size: kb * 1024 }, now)
   const txt = (path: string, kb: number, title: string, body: string): void =>
     void fs.writeFile(path, textContent(title, kb, body), now)
@@ -37,12 +37,12 @@ export function seedFileSystem(fs: GuinanFS, now: number): void {
   big('/.relleno/c', 700)
   big('/Aplicaciones/Música.app', 384)
   big('/Aplicaciones/Terminal.app', 256)
-  big('/Usuarios/juan/Música/cancion1.mp3', 3072)
+  big('/Usuarios/victor/Música/cancion1.mp3', 3072)
   big('/.relleno/d', 1500)
-  big('/Usuarios/juan/Imágenes/foto1.png', 1024)
-  big('/Usuarios/juan/Música/cancion2.mp3', 2560)
+  big('/Usuarios/victor/Imágenes/foto1.png', 1024)
+  big('/Usuarios/victor/Música/cancion2.mp3', 2560)
   big('/.relleno/e', 900)
-  big('/Usuarios/juan/Imágenes/foto2.png', 900)
+  big('/Usuarios/victor/Imágenes/foto2.png', 900)
   big('/Descargas/paquete.bin', 16)
 
   // Al borrar el relleno quedan huecos repartidos por el disco: los archivos de
@@ -51,28 +51,28 @@ export function seedFileSystem(fs: GuinanFS, now: number): void {
   fs.remove('/.relleno', now)
 
   txt(
-    '/Usuarios/juan/Documentos/notas.txt',
+    '/Usuarios/victor/Documentos/notas.txt',
     8,
     'Notas',
-    'Pendientes: terminar el simulador de guiñanOS y preparar la exposición.'
+    'Pendientes: terminar el simulador de LinarezOS y preparar la exposición.'
   )
   txt(
-    '/Usuarios/juan/Documentos/informe.txt',
+    '/Usuarios/victor/Documentos/informe.txt',
     24,
     'Informe de Sistemas de Operación',
     'Administración de procesos, memoria, disco y dispositivos de E/S.'
   )
   txt(
-    '/Usuarios/juan/Documentos/tarea_SO.txt',
+    '/Usuarios/victor/Documentos/tarea_SO.txt',
     12,
     'Tarea: algoritmos de planificación del disco',
     'FCFS, SSTF, SCAN, C-SCAN, LOOK y C-LOOK. Comparar el movimiento total del brazo.'
   )
   txt(
-    '/Usuarios/juan/Proyectos/main.c',
+    '/Usuarios/victor/Proyectos/main.c',
     16,
     '/* main.c */',
-    '#include <stdio.h>\nint main(void) {\n  printf("Hola desde guiñanOS\\n");\n  return 0;\n}'
+    '#include <stdio.h>\nint main(void) {\n  printf("Hola desde LinarezOS\\n");\n  return 0;\n}'
   )
   fs.mkdir('/Respaldos', now)
 }

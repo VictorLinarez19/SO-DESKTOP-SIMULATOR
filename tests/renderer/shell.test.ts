@@ -42,19 +42,19 @@ describe('Terminal: intérprete de comandos', () => {
     expect((await runCommand('nice 3 15', ctx())).error).toBe(true)
   })
 
-  it('ls y cat leen el disco real de guiñanFS', async () => {
+  it('ls y cat leen el disco real de LinarezFS', async () => {
     const { ctx } = setup()
-    const ls = await runCommand('ls /Usuarios/juan/Documentos', ctx())
+    const ls = await runCommand('ls /Usuarios/victor/Documentos', ctx())
     expect(ls.lines.join('\n')).toMatch(/informe\.txt/)
-    const cat = await runCommand('cat informe.txt', ctx('/Usuarios/juan/Documentos'))
+    const cat = await runCommand('cat informe.txt', ctx('/Usuarios/victor/Documentos'))
     expect(cat.lines.join('\n')).toMatch(/Informe de Sistemas de Operación/)
     expect((await runCommand('cat nada.txt', ctx('/'))).error).toBe(true)
   })
 
   it('cd valida carpetas y resuelve rutas relativas', async () => {
     const { ctx } = setup()
-    expect((await runCommand('cd /Usuarios/juan', ctx())).cwd).toBe('/Usuarios/juan')
-    expect((await runCommand('cd ../..', ctx('/Usuarios/juan'))).cwd).toBe('/')
+    expect((await runCommand('cd /Usuarios/victor', ctx())).cwd).toBe('/Usuarios/victor')
+    expect((await runCommand('cd ../..', ctx('/Usuarios/victor'))).cwd).toBe('/')
     expect((await runCommand('cd /nada', ctx())).error).toBe(true)
     expect(resolvePath('/a/b', '../c/./d')).toBe('/a/c/d')
   })
@@ -117,7 +117,7 @@ describe('Terminal: intérprete de comandos', () => {
     await runCommand('mkdir /llena', ctx())
     await runCommand('mkdir /llena/dentro', ctx())
     expect((await runCommand('rmdir /llena', ctx())).error).toBe(true)
-    expect((await runCommand('rmdir /Usuarios/juan/Documentos/notas.txt', ctx())).lines[0]).toMatch(
+    expect((await runCommand('rmdir /Usuarios/victor/Documentos/notas.txt', ctx())).lines[0]).toMatch(
       /no es una carpeta/
     )
     expect((await runCommand('rm /vacia', ctx())).lines[0]).toMatch(/usa rmdir/)
@@ -133,12 +133,12 @@ describe('Terminal: intérprete de comandos', () => {
     expect((await runCommand('mkdir /Sistema/hack', ctx('/', ana))).lines[0]).toMatch(
       /permiso denegado/
     )
-    expect((await runCommand('rm /Usuarios/juan/Documentos/notas.txt', ctx('/', ana))).error).toBe(
+    expect((await runCommand('rm /Usuarios/victor/Documentos/notas.txt', ctx('/', ana))).error).toBe(
       true
     )
-    expect(k.fs.exists('/Usuarios/juan/Documentos/notas.txt')).toBe(true)
-    const admin = { name: 'juan', admin: true }
+    expect(k.fs.exists('/Usuarios/victor/Documentos/notas.txt')).toBe(true)
+    const admin = { name: 'victor', admin: true }
     expect((await runCommand('mkdir /Sistema/prueba', ctx('/', admin))).error).toBeFalsy()
-    expect((await runCommand('whoami', ctx('/', admin))).lines[0]).toMatch(/juan \(administrador\)/)
+    expect((await runCommand('whoami', ctx('/', admin))).lines[0]).toMatch(/victor \(administrador\)/)
   })
 })

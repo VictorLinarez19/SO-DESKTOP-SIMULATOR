@@ -2,16 +2,16 @@
   --font: 'Inter Variable', -apple-system, 'SF Pro Text', system-ui, sans-serif;
   --mono: 'SF Mono', 'JetBrains Mono', 'Ubuntu Mono', ui-monospace, monospace;
   --text: rgba(255, 255, 255, 0.92);
-  --text-muted: rgba(235, 235, 245, 0.58);
-  --text-faint: rgba(235, 235, 245, 0.32);
-  --accent: #0a84ff;
+  --text-muted: rgba(245, 230, 233, 0.58);
+  --text-faint: rgba(245, 230, 233, 0.32);
+  --accent: #e8304f;
   --danger: #ff453a;
   --separator: rgba(255, 255, 255, 0.09);
   --control: rgba(255, 255, 255, 0.1);
   --control-hover: rgba(255, 255, 255, 0.16);
-  --glass: rgba(40, 40, 48, 0.55);
-  --glass-strong: rgba(36, 36, 42, 0.82);
-  --window-bg: rgba(26, 26, 31, 0.86);
+  --glass: rgba(52, 24, 30, 0.55);
+  --glass-strong: rgba(42, 18, 24, 0.82);
+  --window-bg: rgba(30, 14, 18, 0.86);
   --radius-window: 16px;
   font-family: var(--font);
   font-size: 13px;
@@ -31,7 +31,7 @@ body,
   height: 100%;
   overflow: hidden;
   user-select: none;
-  background: #0b0b12;
+  background: #12060a;
 }
 
 button {

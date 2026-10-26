@@ -16,7 +16,7 @@ interface Line {
 const WELCOME: Line[] = [
   {
     kind: 'out',
-    text: 'guiñanOS · Terminal del kernel. Escribe «help» para ver los comandos; «exit» la cierra.'
+    text: 'LinarezOS · Terminal del kernel. Escribe «help» para ver los comandos; «exit» la cierra.'
   },
   {
     kind: 'out',

@@ -9,7 +9,7 @@ const CELL = 6
 const COLOR = {
   meta: '#8e8e93',
   free: 'rgba(255,255,255,0.06)',
-  used: '#0a84ff',
+  used: '#e8304f',
   swapFree: 'rgba(191,90,242,0.14)',
   swapUsed: '#bf5af2',
   file: '#ffd60a',

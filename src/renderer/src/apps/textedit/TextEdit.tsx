@@ -4,7 +4,7 @@ import { processOf } from '../../lib/process'
 import { ProcessBar } from '../../components/ProcessBar'
 import { fmtDate } from '../../lib/files'
 
-const DOC = '/Usuarios/juan/Documentos/notas.txt'
+const DOC = '/Usuarios/victor/Documentos/notas.txt'
 
 /**
  * Editor de texto: cada tecla es una interrupción del teclado real que despierta al
@@ -19,7 +19,7 @@ export function TextEdit(): React.JSX.Element {
   const [editedAt, setEditedAt] = useState(0)
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
-  // Carga el documento real desde el disco de guiñanOS.
+  // Carga el documento real desde el disco de LinarezOS.
   useEffect(() => {
     let alive = true
     void window.os.query({ type: 'fileInfo', path: DOC }).then((d) => {

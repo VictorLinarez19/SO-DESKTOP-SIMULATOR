@@ -7,9 +7,9 @@ import { LogoIcon } from './icons'
 import { LoginScreen } from './LoginScreen'
 
 const BOOT_STEPS = [
-  'Cargando guiñan-kernel…',
+  'Cargando linarez-kernel…',
   'Inicializando el reloj del sistema…',
-  'Montando guiñanFS desde disk.img…',
+  'Montando LinarezFS desde disk.img…',
   'Reservando memoria y área de intercambio…',
   'Registrando controladores de dispositivo…',
   'Detectando hardware real: USB, batería, red, teclado…',
@@ -133,7 +133,7 @@ export function PowerScreens(): React.JSX.Element {
             <div className="power-logo">
               <LogoIcon />
             </div>
-            <h1>guiñanOS</h1>
+            <h1>LinarezOS</h1>
             {power === 'booting' ? (
               <BootScreen />
             ) : (

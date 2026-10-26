@@ -14,7 +14,7 @@ export const WALLPAPERS: { id: Wallpaper; name: string }[] = [
 
 function loadWallpaper(): Wallpaper {
   try {
-    const w = localStorage.getItem('guinanos.wallpaper') as Wallpaper | null
+    const w = localStorage.getItem('linarezos.wallpaper') as Wallpaper | null
     return w && WALLPAPERS.some((x) => x.id === w) ? w : 'aurora'
   } catch {
     return 'aurora'
@@ -51,7 +51,7 @@ export const useUi = create<UiState>((set) => ({
   selectPid: (pid) => set({ selectedPid: pid }),
   selectedFile: null,
   selectFile: (path) => set({ selectedFile: path }),
-  finderPath: '/Usuarios/juan/Documentos',
+  finderPath: '/Usuarios/victor/Documentos',
   setFinderPath: (path) => set({ finderPath: path }),
   spotlight: false,
   controlCenter: false,
@@ -61,7 +61,7 @@ export const useUi = create<UiState>((set) => ({
   set: (patch) => set(patch),
   setWallpaper: (wallpaper) => {
     try {
-      localStorage.setItem('guinanos.wallpaper', wallpaper)
+      localStorage.setItem('linarezos.wallpaper', wallpaper)
     } catch {
       // Sin almacenamiento local: el fondo dura solo esta sesión.
     }

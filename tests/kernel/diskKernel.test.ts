@@ -6,13 +6,13 @@ import { kernelWith, prog, run } from './helpers'
 
 describe('Disco y sistema de archivos en el kernel', () => {
   it('FREAD lee bloques reales y bloquea al proceso hasta que el brazo lo atiende', () => {
-    const k = kernelWith([prog('lector', 'FREAD /Usuarios/juan/Documentos/informe.txt\nCPU 1')])
+    const k = kernelWith([prog('lector', 'FREAD /Usuarios/victor/Documentos/informe.txt\nCPU 1')])
     run(k, 1)
     const p = k.process(1)!
     expect(p.waitingOn).toEqual({
       kind: 'file',
       op: 'read',
-      path: '/Usuarios/juan/Documentos/informe.txt'
+      path: '/Usuarios/victor/Documentos/informe.txt'
     })
     expect(k.snapshot().disk.arm.queue.length + (k.snapshot().disk.arm.current ? 1 : 0)).toBe(1)
     for (let i = 0; i < 30 && k.process(1)!.state !== 'TERMINATED'; i++) k.tick()
@@ -24,11 +24,11 @@ describe('Disco y sistema de archivos en el kernel', () => {
   })
 
   it('FWRITE guarda contenido real que luego se puede leer', () => {
-    const k = kernelWith([prog('escritor', 'FWRITE /Usuarios/juan/Documentos/nuevo.txt 4')])
+    const k = kernelWith([prog('escritor', 'FWRITE /Usuarios/victor/Documentos/nuevo.txt 4')])
     run(k, 20)
     const info = k.query({
       type: 'fileInfo',
-      path: '/Usuarios/juan/Documentos/nuevo.txt'
+      path: '/Usuarios/victor/Documentos/nuevo.txt'
     }) as FileDetails
     expect(info.entry.size).toBe(4096)
     expect(info.blocks).toHaveLength(1)
@@ -40,7 +40,7 @@ describe('Disco y sistema de archivos en el kernel', () => {
     const k = kernelWith([], { disk })
     k.command({
       type: 'fsWriteText',
-      path: '/Usuarios/juan/Documentos/hola.txt',
+      path: '/Usuarios/victor/Documentos/hola.txt',
       text: 'hola mundo'
     })
     k.command({ type: 'reset' })
@@ -49,17 +49,17 @@ describe('Disco y sistema de archivos en el kernel', () => {
     expect(other.snapshot().disk.mountCount).toBe(2)
     const info = other.query({
       type: 'fileInfo',
-      path: '/Usuarios/juan/Documentos/hola.txt'
+      path: '/Usuarios/victor/Documentos/hola.txt'
     }) as FileDetails
     expect(info.preview).toBe('hola mundo')
   })
 
   it('las operaciones del Finder crean y borran', () => {
     const k = kernelWith([])
-    k.command({ type: 'fsMkdir', path: '/Usuarios/juan/Nueva' })
-    expect(k.snapshot().disk.files.some((f) => f.path === '/Usuarios/juan/Nueva')).toBe(true)
-    k.command({ type: 'fsDelete', path: '/Usuarios/juan/Nueva' })
-    expect(k.snapshot().disk.files.some((f) => f.path === '/Usuarios/juan/Nueva')).toBe(false)
+    k.command({ type: 'fsMkdir', path: '/Usuarios/victor/Nueva' })
+    expect(k.snapshot().disk.files.some((f) => f.path === '/Usuarios/victor/Nueva')).toBe(true)
+    k.command({ type: 'fsDelete', path: '/Usuarios/victor/Nueva' })
+    expect(k.snapshot().disk.files.some((f) => f.path === '/Usuarios/victor/Nueva')).toBe(false)
     k.command({ type: 'fsDelete', path: '/Usuarios' })
     expect(k.log.all().at(-1)!.level).toBe('warning')
   })
@@ -93,7 +93,7 @@ describe('Disco con los 15 programas', () => {
     const d = k.snapshot().disk
     expect(d.io.reads).toBeGreaterThan(20)
     expect(d.io.writes).toBeGreaterThan(3)
-    expect(d.files.some((f) => f.path === '/Usuarios/juan/Proyectos/a.out')).toBe(true)
+    expect(d.files.some((f) => f.path === '/Usuarios/victor/Proyectos/a.out')).toBe(true)
     expect(d.arm.stats.totalMovement).toBeGreaterThan(0)
   })
 

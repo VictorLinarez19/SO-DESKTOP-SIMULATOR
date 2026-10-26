@@ -1,9 +1,9 @@
-// Genera docs/guinanOS.pptx (presentación corta del proyecto).
+// Genera docs/LinarezOS.pptx (presentación corta del proyecto).
 const pptxgen = require('pptxgenjs')
-const { applyTheme } = require('/home/juan/.claude/skills/synced/713448e9-58e9-4747-afa8-308a5bf5790a_4480272f-6c83-43bd-ba8a-f89b205437f7/pptx/scripts/apply_theme.js')
+const { applyTheme } = require(require('os').homedir() + '/.claude/skills/synced/713448e9-58e9-4747-afa8-308a5bf5790a_4480272f-6c83-43bd-ba8a-f89b205437f7/pptx/scripts/apply_theme.js')
 
 const THEME = {
-  name: 'guiñanOS',
+  name: 'LinarezOS',
   headFontFace: 'Cambria',
   bodyFontFace: 'Calibri',
   colors: {
@@ -15,7 +15,7 @@ const THEME = {
 
 const pres = new pptxgen()
 pres.layout = 'LAYOUT_16x9'
-pres.title = 'guiñanOS: simulador de sistema operativo de escritorio'
+pres.title = 'LinarezOS: simulador de sistema operativo de escritorio'
 pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace }
 const C = pres.SchemeColor
 const IMG = (n) => `docs/capturas/${n}.png`
@@ -26,7 +26,7 @@ pres.defineSlideMaster({
 })
 pres.defineSlideMaster({
   title: 'CLARA', background: { color: THEME.colors.lt1 },
-  objects: [{ text: { text: 'guiñanOS', options: { x: 0.5, y: 5.25, w: 3, h: 0.25, fontSize: 10, color: C.text2, margin: 0, isTextBox: true } } }],
+  objects: [{ text: { text: 'LinarezOS', options: { x: 0.5, y: 5.25, w: 3, h: 0.25, fontSize: 10, color: C.text2, margin: 0, isTextBox: true } } }],
   slideNumber: { x: 9.2, y: 5.25, color: C.text2, fontSize: 10 }
 })
 
@@ -46,7 +46,7 @@ function shot(s, name, x = 4.85, y = 1.35, w = 4.8) {
 
 // 1. Portada
 let s = pres.addSlide({ masterName: 'OSCURA' })
-s.addText('guiñanOS', { x: 0.7, y: 1.5, w: 8.6, h: 1.2, fontFace: 'Cambria', fontSize: 66, bold: true, color: C.background1, margin: 0, isTextBox: true })
+s.addText('LinarezOS', { x: 0.7, y: 1.5, w: 8.6, h: 1.2, fontFace: 'Cambria', fontSize: 66, bold: true, color: C.background1, margin: 0, isTextBox: true })
 s.addText('Simulador de sistema operativo de escritorio', { x: 0.7, y: 2.75, w: 8.6, h: 0.6, fontSize: 26, color: C.accent2, margin: 0, isTextBox: true })
 s.addText('Sistemas de Operación · 7.º semestre\nKernel simulado + hardware real de la laptop', { x: 0.7, y: 3.7, w: 8.6, h: 0.9, fontSize: 16, color: C.background2, margin: 0, isTextBox: true })
 s.addNotes('Presentación corta del proyecto. Mostrar la app en vivo en cuanto se pueda.')
@@ -60,7 +60,7 @@ const reqs = [
   ['Inanición con evidencia', 'y envejecimiento (aging)'],
   ['Memoria: compactación y overlays', 'fragmentación a la vista'],
   ['Sincronización', 'semáforos, mutex, carreras'],
-  ['Disco real y 6 algoritmos', 'guiñanFS en disk.img'],
+  ['Disco real y 6 algoritmos', 'LinarezFS en disk.img'],
   ['Hardware real', 'USB, cámara, Wi-Fi, Bluetooth']
 ]
 reqs.forEach(([a, b], i) => {
@@ -91,7 +91,7 @@ s.addNotes('El kernel corre en su propio hilo; la interfaz solo recibe instantá
 s = titled('Escritorio, sesiones y Terminal')
 bullets(s, ['Inicio de sesión con cuentas guardadas en disk.img', 'Administrador y usuario estándar con permisos distintos', 'Bloquear, suspender, reiniciar y apagar', 'Terminal con comandos reales: ps, kill, mem, ls, exit…', 'Spotlight, Mission Control y Centro de control'])
 shot(s, 'login')
-s.addNotes('Mostrar el inicio de sesión: Juan (contraseña guinan) es administrador; Ana solo escribe en su carpeta.')
+s.addNotes('Mostrar el inicio de sesión: Victor (contraseña victor) es administrador; Ana solo escribe en su carpeta.')
 
 // 4. Procesos
 s = titled('Procesos, estados y planificación')
@@ -119,7 +119,7 @@ s.addNotes('El interbloqueo aparece cerca del tick 115. Mostrar luego el aviso d
 
 // 8. Disco
 s = titled('Disco y sistema de archivos')
-bullets(s, ['guiñanFS: i-nodos, mapa de bits y asignación indexada', 'disk.img: archivo real de 32 MB que persiste', 'Brazo con FCFS, SSTF, SCAN, C-SCAN, LOOK y C-LOOK', 'Finder y Utilidad de Discos muestran los bloques'])
+bullets(s, ['LinarezFS: i-nodos, mapa de bits y asignación indexada', 'disk.img: archivo real de 32 MB que persiste', 'Brazo con FCFS, SSTF, SCAN, C-SCAN, LOOK y C-LOOK', 'Finder y Utilidad de Discos muestran los bloques'])
 shot(s, 'disco')
 s.addNotes('Cambiar el algoritmo del brazo y comparar la gráfica de recorrido.')
 
@@ -135,7 +135,7 @@ const rows = [['Dispositivo', 'Cómo lo controla el kernel'],
 s.addTable(rows.map((r, i) => r.map((t) => ({ text: t, options: { bold: i === 0, color: i === 0 ? 'FFFFFF' : '1B1033', fill: { color: i === 0 ? '7B3FE4' : (i % 2 ? 'F3F0FA' : 'FFFFFF') } } }))),
   { x: 0.5, y: 1.3, w: 4.2, colW: [1.4, 2.8], fontSize: 11, border: { type: 'solid', color: 'E0DAF0', pt: 0.75 }, valign: 'middle', objectName: 'Tabla hardware' })
 shot(s, 'hardware')
-s.addNotes('Conectar una memoria USB durante la demo y mostrar la carpeta guiñanOS-respaldos.')
+s.addNotes('Conectar una memoria USB durante la demo y mostrar la carpeta LinarezOS-respaldos.')
 
 // 10. Cierre
 s = pres.addSlide({ masterName: 'OSCURA' })
@@ -148,7 +148,7 @@ s.addText('Demostración en vivo con la app «Demostración»', { x: 0.7, y: 4.1
 s.addNotes('Cerrar con la app Demostración: interbloqueo, inanición y fragmentación con un clic.')
 
 ;(async () => {
-  await pres.writeFile({ fileName: 'docs/guinanOS.pptx' })
-  await applyTheme('docs/guinanOS.pptx', THEME)
+  await pres.writeFile({ fileName: 'docs/LinarezOS.pptx' })
+  await applyTheme('docs/LinarezOS.pptx', THEME)
   console.log('ok')
 })()

@@ -31,7 +31,7 @@ function runEffects(): void {
   }
 }
 
-/** Copia real a la memoria USB, solo dentro de la carpeta propia de guiñanOS. */
+/** Copia real a la memoria USB, solo dentro de la carpeta propia de LinarezOS. */
 function writeToUsb(e: Extract<KernelEffect, { type: 'usbWrite' }>): void {
   const dir = join(e.mount, USB_BACKUP_DIR)
   const path = join(dir, e.fileName)

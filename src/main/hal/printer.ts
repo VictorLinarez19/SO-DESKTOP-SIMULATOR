@@ -23,7 +23,7 @@ export async function printJob(
     body{font:13px/1.5 -apple-system,'Inter',sans-serif;margin:48px;color:#111}
     header{border-bottom:2px solid #7b3fe4;margin-bottom:24px;padding-bottom:8px}
     h1{font-size:20px;margin:0}small{color:#666}pre{white-space:pre-wrap;font:12px/1.5 monospace}
-  </style><header><h1>${esc(job.title)}</h1><small>guiñanOS · trabajo #${job.jobId} · enviado por
+  </style><header><h1>${esc(job.title)}</h1><small>LinarezOS · trabajo #${job.jobId} · enviado por
   ${esc(job.owner)} (PID ${job.pid}) · ${new Date().toLocaleString('es-MX')}</small></header>
   <pre>${esc(job.content)}</pre>`
   const win = new BrowserWindow({ show: false, webPreferences: { sandbox: true } })

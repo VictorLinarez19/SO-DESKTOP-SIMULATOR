@@ -53,7 +53,7 @@ export function KernelConsole(): React.JSX.Element {
               2
             )
           : snapshotToReport(snap, all)
-    setExported(await window.os.system.saveExport(`guinanOS_${stamp}.${kind}`, content))
+    setExported(await window.os.system.saveExport(`LinarezOS_${stamp}.${kind}`, content))
   }
   const stick = useRef(true)
 

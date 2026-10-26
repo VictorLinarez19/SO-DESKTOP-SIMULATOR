@@ -110,7 +110,7 @@ const nameW = Math.max(...procs.map((p) => p.name.length)) + 4
 
 console.log(
   bold(
-    `\nguiñanOS · simulación: ${ticks} ticks · ${POLICY_LABEL[policy]} · cambio de contexto = ${args.cs} tick(s)\n`
+    `\nLinarezOS · simulación: ${ticks} ticks · ${POLICY_LABEL[policy]} · cambio de contexto = ${args.cs} tick(s)\n`
   )
 )
 const legendStates = [
@@ -358,7 +358,7 @@ const disk = kernel.snapshot().disk
 const arm = disk.arm
 console.log(
   bold(
-    `\nDisco · guiñanFS · ${disk.blockCount} bloques de ${disk.blockSize / 1024} KB · brazo ${DISK_POLICY_LABEL[arm.policy]}`
+    `\nDisco · LinarezFS · ${disk.blockCount} bloques de ${disk.blockSize / 1024} KB · brazo ${DISK_POLICY_LABEL[arm.policy]}`
   )
 )
 console.log(

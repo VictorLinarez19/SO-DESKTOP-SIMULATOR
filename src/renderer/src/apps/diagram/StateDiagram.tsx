@@ -174,7 +174,7 @@ function DiagramSvg({ snapshot }: { snapshot: KernelSnapshot }): React.JSX.Eleme
           markerHeight="7"
           orient="auto-start-reverse"
         >
-          <path d="M0,0 L10,5 L0,10 z" fill="#0a84ff" />
+          <path d="M0,0 L10,5 L0,10 z" fill="#e8304f" />
         </marker>
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="3" result="b" />

@@ -3,8 +3,8 @@ export function FileIcon({ name, dir, size = 18 }: { name: string; dir: boolean;
   if (dir) {
     return (
       <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden>
-        <path d="M2 6a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v1H2z" fill="#3a8ee6" />
-        <path d="M2 9h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z" fill="#5aa9f7" />
+        <path d="M2 6a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v1H2z" fill="#c42a45" />
+        <path d="M2 9h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z" fill="#e8526b" />
       </svg>
     )
   }
@@ -13,7 +13,7 @@ export function FileIcon({ name, dir, size = 18 }: { name: string; dir: boolean;
     ext === 'txt' || ext === 'c' || ext === 'md'
       ? '#e5e5ea'
       : ext === 'app'
-        ? '#0a84ff'
+        ? '#e8304f'
         : ext === 'mp3'
           ? '#ff375f'
           : ext === 'png'

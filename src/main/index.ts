@@ -20,7 +20,7 @@ function broadcast(channel: string, payload: unknown): void {
 }
 
 function createWindow(): void {
-  // Sin marco: el escritorio de guiñanOS (barra de menú, Dock, ventanas) ocupa toda la ventana.
+  // Sin marco: el escritorio de LinarezOS (barra de menú, Dock, ventanas) ocupa toda la ventana.
   const win = new BrowserWindow({
     width: 1440,
     height: 900,
@@ -29,7 +29,7 @@ function createWindow(): void {
     show: false,
     frame: false,
     backgroundColor: '#0b0b12',
-    title: 'guiñanOS',
+    title: 'LinarezOS',
     autoHideMenuBar: true,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -74,7 +74,7 @@ app.whenReady().then(() => {
   )
   session.defaultSession.setPermissionCheckHandler((_wc, permission) => permission === 'media')
 
-  // El disco de guiñanOS es un archivo real en la carpeta de datos de la aplicación.
+  // El disco de LinarezOS es un archivo real en la carpeta de datos de la aplicación.
   kernel = new KernelHost(diskPath)
   kernel.onEffect = (effect) => {
     if (effect.type !== 'print') return

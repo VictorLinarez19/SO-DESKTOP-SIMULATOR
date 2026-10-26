@@ -152,7 +152,7 @@ export const APPS: Record<AppId, AppManifest> = {
   },
   about: {
     id: 'about',
-    name: 'Acerca de guiñanOS',
+    name: 'Acerca de LinarezOS',
     size: { w: 420, h: 400 },
     minSize: { w: 420, h: 400 },
     singleton: true,

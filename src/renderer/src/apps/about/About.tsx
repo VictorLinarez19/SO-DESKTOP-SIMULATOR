@@ -9,14 +9,14 @@ export function About(): React.JSX.Element {
       <div className="about-logo">
         <LogoIcon />
       </div>
-      <h1>guiñanOS</h1>
+      <h1>LinarezOS</h1>
       <div className="muted">
         Versión 0.6 · procesos, memoria, sincronización, interbloqueo y disco
       </div>
       <dl className="about-specs">
         <div>
           <dt>Kernel</dt>
-          <dd>guiñan-kernel · modelo de 7 estados</dd>
+          <dd>linarez-kernel · modelo de 7 estados</dd>
         </div>
         <div>
           <dt>Reloj</dt>
